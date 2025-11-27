@@ -4,6 +4,7 @@ using Inventario.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Inventario.Controllers
 {
@@ -40,7 +41,8 @@ namespace Inventario.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] Usuario nuevoUsuario)
         {
-            
+            nuevoUsuario.Nombre = WebUtility.HtmlEncode(nuevoUsuario.Nombre);
+            nuevoUsuario.Email = WebUtility.HtmlEncode(nuevoUsuario.Email);
             var existe = await _context.Usuarios
                 .AnyAsync(u => u.Email == nuevoUsuario.Email);
 

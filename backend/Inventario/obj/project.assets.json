@@ -4210,11 +4210,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Israel Flores\\source\\repos\\Inventario\\Inventario.csproj",
+      "projectUniqueName": "C:\\Users\\Israel Flores\\Desktop\\Archivos\\2025\\bootcamp\\securuty\\proyecto\\backend\\Inventario\\Inventario.csproj",
       "projectName": "Inventario",
-      "projectPath": "C:\\Users\\Israel Flores\\source\\repos\\Inventario\\Inventario.csproj",
+      "projectPath": "C:\\Users\\Israel Flores\\Desktop\\Archivos\\2025\\bootcamp\\securuty\\proyecto\\backend\\Inventario\\Inventario.csproj",
       "packagesPath": "C:\\Users\\Israel Flores\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Israel Flores\\source\\repos\\Inventario\\obj\\",
+      "outputPath": "C:\\Users\\Israel Flores\\Desktop\\Archivos\\2025\\bootcamp\\securuty\\proyecto\\backend\\Inventario\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

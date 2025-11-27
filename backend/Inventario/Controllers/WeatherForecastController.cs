@@ -2,6 +2,7 @@ using Inventario.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Inventario.Controllers
 {
@@ -39,21 +40,52 @@ namespace Inventario.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> GetAll()
         {
-            return await _context.WeatherForecasts.ToListAsync();
+            // 1. Verificar si el token contiene el claim "id"
+            var idClaim = User.FindFirst("id");
+            if (idClaim == null)
+            {
+                return Unauthorized(new { message = "Token inválido o faltan datos requeridos." });
+            }
+
+            // 2. Validar que el ID sea numérico
+            if (!int.TryParse(idClaim.Value, out int userId))
+            {
+                return Unauthorized(new { message = "Token inválido: el identificador del usuario no es válido." });
+            }
+
+            try
+            {
+                // 3. Obtener solo los weather del usuario autenticado
+                var list = await _context.WeatherForecasts
+                    .Where(w => w.UserId == userId)
+                    .ToListAsync();
+
+                return Ok(list);
+            }
+            catch (Exception)
+            {
+                return Unauthorized(new { message = "Token inválido o no autorizado." });
+            }
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<WeatherForecast>> GetById(int id)
         {
-            var forecast = await _context.WeatherForecasts.FindAsync(id);
-            if(forecast==null) return NotFound();
+            var list = await _context.WeatherForecasts
+       .Where(w => w.UserId == id)
+       .ToListAsync();
 
-            return forecast;
+            if (list.Count == 0)
+                return NotFound($"No existen registros para el usuario con Id {id}");
+
+            return Ok(list);
         }
         [HttpPost]
         public async Task<ActionResult<WeatherForecast>> Post(WeatherForecast forecast)
         {
             try
             {
+
+                forecast.Summary = WebUtility.HtmlEncode(forecast.Summary);
                 var userId = int.Parse(User.FindFirst("id")!.Value);
 
                 // 2?? Asignarlo al modelo
