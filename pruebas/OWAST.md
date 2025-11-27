@@ -55,12 +55,12 @@ Las imágenes utilizadas se encuentran en la carpeta `readme-images/`.
 
 # 🔎 4. Consulta por ID — Weather por Usuario
 
-## 📌 get_weather_user_1
+## 📌 Listado de weather de usuario 1
 <p align="center">
   <img src="../assets/get_weather_user_1.png" width="550">
 </p>
 
-## 📌 get_weather_user_2
+## 📌 Listado de weather de usuario 2
 <p align="center">
   <img src="../assets/get_weather_user_2.png" width="550">
 </p>
@@ -85,15 +85,7 @@ A continuación se muestran las pruebas realizadas para validar que el sistema *
   <img src="../assets/injection_login_2_result.png" width="450">
 </p>
 
-### 3️⃣ Otro intento
-<p align="center">
-  <img src="../assets/injection_login_3_result.png" width="450">
-</p>
 
-### 4️⃣ Último intento fallido
-<p align="center">
-  <img src="../assets/injection_login_4_result.png" width="450">
-</p>
 
 ---
 
